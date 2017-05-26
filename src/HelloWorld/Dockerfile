@@ -1,6 +1,6 @@
 FROM microsoft/aspnetcore:1.0.1
-ENTRYPOINT ["dotnet", "HelloWorld.dll"]
-ARG source=.
 WORKDIR /app
-EXPOSE 5001/tcp
-COPY $source .
+COPY bin/Debug/netcoreapp1.0/publish /app
+ENV ASPNETCORE_URLS http://*:5001
+EXPOSE 5001
+ENTRYPOINT /bin/bash -c "dotnet HelloWorld.dll"
